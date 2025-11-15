@@ -1,0 +1,73 @@
+/* ====== style.css ====== */
+:root{
+  --bg1:#071022;
+  --bg2:#04101a;
+  --accent1:#00eaff;
+  --accent2:#66ffff;
+  --card: rgba(255,255,255,0.06);
+  --glass-blur: 8px;
+  --text: #e6fbff;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%; margin:0; font-family:Inter, "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+body{
+  background: radial-gradient(1200px 800px at 10% 10%, rgba(0,160,200,0.06), transparent),
+              linear-gradient(180deg, var(--bg1), var(--bg2));
+  color:var(--text);
+  padding:18px;
+  display:flex; flex-direction:column; gap:14px; align-items:center;
+}
+
+/* Top */
+.topbar{ text-align:center; }
+.topbar h1{ margin:6px 0; font-size:22px; letter-spacing:0.6px;
+  background:linear-gradient(90deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; color:transparent;}
+.topbar .sub{ opacity:0.8; font-size:13px; }
+
+/* Layout */
+.layout{ display:grid; grid-template-columns: 1fr; gap:12px; width:100%; max-width:1100px; align-items:start; }
+@media(min-width:980px){ .layout{ grid-template-columns: 480px 1fr; } }
+
+/* Cards */
+.card{
+  background:var(--card);
+  border-radius:12px;
+  padding:14px;
+  backdrop-filter: blur(var(--glass-blur));
+  box-shadow: 0 6px 30px rgba(0,180,220,0.06), inset 0 1px 0 rgba(255,255,255,0.02);
+}
+
+/* Board panel */
+.board-panel{ display:flex; justify-content:center; align-items:center; padding:18px 12px; }
+#board{ width: min(92vw,440px); border-radius:10px; overflow:hidden; box-shadow: 0 10px 30px rgba(0,200,255,0.05); }
+
+/* Controls panel */
+.controls .status{ margin-bottom:10px; font-size:14px; }
+.row{ display:flex; gap:8px; flex-wrap:wrap; margin:8px 0; justify-content:center; }
+.btn{
+  background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border:1px solid rgba(255,255,255,0.04);
+  color:var(--text); padding:10px 14px; border-radius:10px; cursor:pointer; font-weight:600;
+  transition:transform .16s ease, box-shadow .16s ease;
+}
+.btn.primary{ background: linear-gradient(90deg,var(--accent1),var(--accent2)); color:#002a33; box-shadow: 0 8px 30px rgba(0,230,255,0.08);}
+.btn:hover{ transform:translateY(-4px); box-shadow: 0 18px 40px rgba(0,200,255,0.06); }
+
+/* switches */
+.switch{ display:flex; gap:8px; align-items:center; font-size:14px; opacity:0.95; }
+.switch input{ width:18px; height:18px; }
+
+/* info */
+.info{ margin-top:8px; font-size:14px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+
+/* footer / log */
+.footer{ max-width:1100px; width:100%; margin-top:6px; display:flex; gap:12px; flex-direction:column; }
+.log{ max-height:150px; overflow:auto; font-family:monospace; font-size:13px; color:#dff9ff; opacity:0.95; padding:8px; border-radius:8px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));}
+.credits{ opacity:0.6; font-size:13px; text-align:center; margin-top:4px; }
+
+/* chessboard.js overrides: make squares rounded + subtle border + nicer pieces */
+.chessboard-1x1 .square-55d63 { border-radius:6px; }
+.chessboard-1x1 .piece {
+  filter: drop-shadow(0 6px 16px rgba(0,200,255,0.05));
+}
