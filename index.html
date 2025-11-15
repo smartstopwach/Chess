@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Voice Chess — Stockfish + Voice</title>
+
+  <!-- chessboard.js CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.css" />
+
+  <!-- Your styles -->
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>🎙️ Voice Chess — Stockfish Integrated</h1>
+    <div class="sub">Speak moves (English/Hindi), AI replies by voice. No PNGs — SVG pieces generated dynamically.</div>
+  </header>
+
+  <main class="layout">
+    <section class="panel board-panel card">
+      <div id="board" ></div>
+    </section>
+
+    <section class="panel controls card">
+      <div class="status" id="status">Ready — click <b>Start Listening</b> and say a move like "E2 to E4" or "Knight f3" (you can also say Hindi: "E2 se E4").</div>
+
+      <div class="row">
+        <button id="listenBtn" class="btn primary">🎤 Start Listening</button>
+        <button id="stopBtn" class="btn">⏹ Stop</button>
+        <button id="newBtn" class="btn">♻ New Game</button>
+        <button id="undoBtn" class="btn">↶ Undo</button>
+      </div>
+
+      <div class="row">
+        <label class="switch"><input id="stockfishToggle" type="checkbox" checked><span>Stockfish (Strong AI)</span></label>
+        <label class="switch"><input id="voiceToggle" type="checkbox" checked><span>AI Voice Output</span></label>
+      </div>
+
+      <div class="info">
+        <div>Last heard: <b id="heard">—</b></div>
+        <div>Turn: <b id="turn">White</b></div>
+        <div>Moves: <span id="moves">—</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="card footer">
+    <div id="log" class="log"></div>
+    <div class="credits">Libraries: chess.js, chessboard.js, stockfish.js (via CDN)</div>
+  </footer>
+
+  <!-- External libs (CDNs) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.js"></script>
+
+  <!-- Stockfish worker: we spawn a worker from CDN copy -->
+  <!-- Using cdnjs / jsDelivr distribution for stockfish.js (worker script). -->
+  <script>
+    // URL used to instantiate the engine worker (CDN-hosted stockfish.js)
+    // If you prefer to host locally, download stockfish.js & replace the URL.
+    const STOCKFISH_WORKER_URL = "https://cdnjs.cloudflare.com/ajax/libs/stockfish.js/10.0.2/stockfish.js";
+  </script>
+
+  <!-- Your main script -->
+  <script src="./script.js"></script>
+</body>
+</html>
